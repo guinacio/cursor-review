@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cursor-review-marketplace",
+  "description": "Cross-model code review plugin using Cursor CLI and GPT-5.3 Codex High",
+  "owner": {
+    "name": "guinacio"
+  },
+  "plugins": [
+    {
+      "name": "cursor-review",
+      "description": "External AI code review via Cursor CLI (GPT-5.3). Checks correctness, bugs, security, tests, performance, error handling, architecture, and plan compliance.",
+      "version": "1.0.0",
+      "source": "./plugins/cursor-review",
+      "category": "productivity",
+      "homepage": "https://github.com/guinacio/cursor-review"
+    }
+  ]
+}

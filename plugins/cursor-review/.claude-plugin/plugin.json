@@ -1,0 +1,8 @@
+{
+  "name": "cursor-review",
+  "description": "External AI code review via Cursor CLI (GPT-5.3 Codex High). Provides a second opinion checking correctness, bugs, security, tests, performance, error handling, architecture, and plan compliance.",
+  "version": "1.0.0",
+  "author": {
+    "name": "guinacio"
+  }
+}
