@@ -100,9 +100,11 @@ The `agent` command (Cursor CLI headless mode) is a Node.js-based CLI available 
    ```bash
    powershell -NoProfile -File - <<'PSEOF'
    $prompt = Get-Content 'C:\path\to\cursor-review-prompt.txt' -Raw
-   & agent -p $prompt
+   & agent -f -p $prompt
    PSEOF
    ```
+
+> **The `-f` flag** (force trust) is required for non-interactive invocations. Without it, Cursor will prompt for workspace trust confirmation and hang indefinitely in headless mode.
 
 **Important execution details:**
 
@@ -183,6 +185,7 @@ Handle these failure modes with clear messages:
 - **`The filename or extension is too long`**: The prompt exceeds Windows' ~32K character command-line limit. Switch to the delegation strategy — write a shorter prompt that tells the agent to read files itself (see Phase 4).
 - **`'p' is not in the list of known options`**: You're using `cursor.cmd agent -p` — the wrapper doesn't forward flags. Use the standalone `agent` command via PowerShell instead.
 - **`The term '=' is not recognized`**: You used `powershell -Command` with `$prompt` — bash interpreted `$prompt` as an empty shell variable. Use the `powershell -File -` heredoc pattern instead.
+- **`Workspace Trust Required` (hangs indefinitely)**: You forgot the `-f` flag. The agent prompts for interactive trust confirmation which can't be answered in headless mode. Always use `agent -f -p`.
 - **Timeout (>5 min)**: Kill the process, report any partial output received, suggest reducing scope with `diff` or specific file paths.
 - **Authentication error**: "Cursor CLI requires authentication. Run `cursor` interactively first to log in."
 - **Empty output**: "Cursor returned no output. Try running `agent -p 'hello'` in PowerShell interactively once to verify it works."
