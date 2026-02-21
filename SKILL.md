@@ -16,6 +16,8 @@ Determine review scope from `$ARGUMENTS`:
 - **`full`**: Review entire codebase structure and key source files
 - **A file path or glob**: Review only the specified files (e.g., `src/auth/*.ts`)
 
+> **Known limitation — diff scope:** GPT-5.3 Codex High occasionally misreads quoted strings in unified diff format, producing false positives (e.g., flagging `"value"` or `["a", "b"]` as missing quotes). For small changes, prefer specific file scope (e.g., `/cursor-review agent_core.py`) — the agent reads the actual file and avoids this diff-parsing confusion. Diff scope is best for larger, multi-file changes where the structural context outweighs the risk of false positives.
+
 ## Workflow
 
 ### Phase 1: Gather Context
